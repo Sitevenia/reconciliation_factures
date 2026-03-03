@@ -9,7 +9,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 st.set_page_config(page_title="Rapprochement Facture vs BL", page_icon="⚖️", layout="wide")
 
 # --- Constantes des Colonnes SOURCE (noms dans les fichiers) ---
-COL_BL_REF_FOURN  = 'Référence Fournisseur'
+COL_BL_REF_FOURN  = 'Référence fournisseur'
 COL_BL_DES        = 'Désignation'
 COL_BL_PU         = 'P.U. HT'
 COL_BL_QTE        = 'Quantité'
