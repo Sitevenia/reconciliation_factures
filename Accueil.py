@@ -7,6 +7,8 @@ import io
 import logging
 import re
 import calendar
+import sys, os; sys.path.insert(0, os.path.dirname(__file__))
+from theme import apply_theme
 
 # Importer les fonctions de helpers.py
 try:
@@ -83,11 +85,15 @@ st.set_page_config(
         'About': "# Application d'aide à la décision logistique."
     }
 )
+apply_theme()
 
 # --- CONTENU DE LA PAGE D'ACCUEIL ---
-st.title("📊 Tableau de Bord Logistique Global")
-st.markdown("Chargez votre fichier de travail Excel principal ici pour activer les outils d'analyse disponibles dans les autres pages (via la barre latérale).")
-st.markdown("---")
+st.markdown("""
+<div class="app-header">
+    <h1>📊 Tableau de Bord Logistique</h1>
+    <p>Chargez votre fichier Excel principal pour activer les outils d'analyse disponibles dans les autres pages.</p>
+</div>
+""", unsafe_allow_html=True)
 
 with st.expander("ℹ️ Informations de Débogage Session State (Accueil)", expanded=False):
     st.write(f"Nom du fichier uploadé (session): `{st.session_state.get('uploaded_file_name')}`")
@@ -421,8 +427,7 @@ elif not st.session_state.get('df_initial_filtered', pd.DataFrame()).empty or \
         st.warning("⚠️ Attention : Aucune colonne de vente par semaine n'a été auto-détectée. Certaines analyses pourraient être limitées.")
     
     # --- DESCRIPTION DES APPLICATIONS DISPONIBLES (MODIFIÉE) ---
-    st.markdown("---")
-    st.subheader("Applications Disponibles")
+    st.markdown('<div class="section-title">Applications Disponibles</div>', unsafe_allow_html=True)
     st.markdown("""
     Utilisez la **barre latérale de navigation** pour accéder aux outils d'analyse :
 
