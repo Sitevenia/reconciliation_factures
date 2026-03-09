@@ -2,10 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import io
+import sys, os; sys.path.insert(0, os.path.dirname(__file__))
 from openpyxl.styles import PatternFill, Font, Border, Side, Alignment
 from openpyxl.worksheet.worksheet import Worksheet
+from theme import apply_theme, page_header
 
 st.set_page_config(page_title="Rapprochement Facture vs BL", page_icon="\u2696\ufe0f", layout="wide")
+apply_theme()
 
 # --- Constantes colonnes SOURCE (noms canoniques attendus) ---
 COL_BL_REF_FOURN  = "R\u00e9f\u00e9rence Fournisseur"
@@ -145,7 +148,7 @@ def generer_excel(df):
     output.seek(0); return output
 
 # --- Interface ---
-st.title("\u2696\ufe0f Rapprochement Facture Fournisseur vs BL")
+page_header("⚖️ Rapprochement Facture Fournisseur vs BL", "Comparez votre facture fournisseur avec vos bons de livraison et identifiez les écarts de prix, remise ou quantité.")
 
 with st.sidebar:
     st.header("1. Importation")
